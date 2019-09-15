@@ -73,7 +73,7 @@
 			th:if="${!personal.isEmpty()}">
 			<h2 style="text-align: center;" th:if="${list.isEmpty()}">No hay
 				horas imputadas</h2>
-			<a th:if="${!list.isEmpty()}" style="float: right;"
+			<a th:if="${!list.isEmpty() && bool}" style="float: right;" 
 				class="btn btn-primary " href="/horas/save/horas/0"><span>Agregar
 					horas</span></a>
 			<div class="col-ms-12" th:if="${!list.isEmpty()}">

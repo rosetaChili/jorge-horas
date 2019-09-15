@@ -27,9 +27,9 @@
 						<tbody>
 							<tr>
 								<th th:text="${dia}" scope="row"></th>
-								<td><input class="form-control" type="text"
+								<td><input class="form-control"
 									th:field="*{horasDia}" id="horasInputadas"
-									name="horasInputadas" /> <!-- <div th:if="${#fields.hasErrors('*')}">errors</div> -->
+									name="horasInputadas" type="number" required="required"/> <!-- <div th:if="${#fields.hasErrors('*')}">errors</div> -->
 								</td>
 								<td><button type="submit" class="btn btn-success">Imputar</button></td>
 							</tr>

@@ -47,6 +47,13 @@ public class HorasController implements WebMvcConfigurer {
 		model.addAttribute("personal", persona);
 		model.addAttribute("horasRestantesTotal", persona.size() == 0 ? "" : persona.get(0).getHorasTotalesRestantes().toString());
 		
+		parte1();
+		boolean haRegistradoHora = true;
+		if(list.size() != 0 && persona.size() != 0)
+			if(persona.get(0).getHoras().get(persona.get(0).getHoras().size()-1).getNumeroDia().equalsIgnoreCase(partes[2]))
+				haRegistradoHora = false;
+		
+		model.addAttribute("bool", haRegistradoHora);
 		return "horasTotales.html";
 	}
 
