@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,6 @@ import com.gmail.jorge.jorgegmail.entity.Persona;
 import com.gmail.jorge.jorgegmail.services.HorasService;
 import com.gmail.jorge.jorgegmail.services.PersonaService;
 import com.gmail.jorge.jorgegmail.util.DevolverHorasRestantes;
-import com.gmail.jorge.jorgegmail.util.HorasTotalesACalcular;
 
 @Controller
 @Configurable
@@ -36,8 +34,6 @@ public class HorasController implements WebMvcConfigurer {
 
 	@Autowired
 	PersonaService personaService;
-
-	private HorasTotalesACalcular horasTotalesACalcular;
 
 	Calendar ca = Calendar.getInstance();
 	String[] partes = null;
@@ -131,13 +127,4 @@ public class HorasController implements WebMvcConfigurer {
 		}
 		return dia + " " + partes[2];
 	}
-
-	public HorasTotalesACalcular getHorasTotalesACalcular() {
-		return horasTotalesACalcular;
-	}
-
-	public void setHorasTotalesACalcular(HorasTotalesACalcular horasTotalesACalcular) {
-		this.horasTotalesACalcular = horasTotalesACalcular;
-	}
-
 }

@@ -30,11 +30,15 @@
 					name="apellido2">
 			</div>
 			<div class="form-group">
-				<label for="horasSemana">Horas/Semana</label> <input type="text"
+				<label for="horasSemana">Horas/Semana</label> <input type="text" placeholder="35 - 42:30 || 40"
 					class="form-control" id="horasSemana" th:field="*{horasSemana}"
 					name="horasSemana">
 			</div>
-
+			<div class="form-group">
+				<label for="horasTotales">Horas/Año</label> <input type="text"
+					class="form-control" id="horasTotales" th:field="*{horasTotales}"
+					name="horasTotales">
+			</div>
 			<button type="submit" class="btn btn-success">Guardar</button>
 		</form>
 	</div>

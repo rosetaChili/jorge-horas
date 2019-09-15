@@ -42,10 +42,7 @@ public class PersonaController implements WebMvcConfigurer {
 	
 	@PostMapping("/save/persona")
 	public String savePersona(Persona personaAGuardar, Model model, BindingResult bindingResult, Errors hasErrors) {
-		personaAGuardar.setHorasTotales("1738");
 		personaAGuardar.setMediaHoras("0");
-		
-		
 		List<Horas> list = horasService.findAll();
 		model.addAttribute("list", list);
 		List<Persona> persona =  personaService.findAll();
