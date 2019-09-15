@@ -49,12 +49,14 @@ public class HorasController implements WebMvcConfigurer {
 		model.addAttribute("list", list);
 		List<Persona> persona = personaService.findAll();
 		model.addAttribute("personal", persona);
-		model.addAttribute("horasRestantesTotal", persona.get(0).getHorasTotalesRestantes().toString());
+		model.addAttribute("horasRestantesTotal", persona.size() == 0 ? "" : persona.get(0).getHorasTotalesRestantes().toString());
+		
 		return "horasTotales.html";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/save/horas/{id}")
 	public String showSave(@PathVariable("id") Long id, Model model) {
+		//guardar horas pantalla
 		Horas b = new Horas();
 		model.addAttribute("horas", b);
 		String parte1 = parte1();

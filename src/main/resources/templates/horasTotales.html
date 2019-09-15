@@ -7,6 +7,11 @@
 <!-- Bootstrap CSS -->
 <link href="../static/css/bootstrap.css" rel="stylesheet"
 	th:href="@{/css/bootstrap.css}">
+<style type="text/css">
+.table {
+	text-align: center;
+}
+</style>
 </head>
 <body>
 	<div class="container">
@@ -55,46 +60,50 @@
 							</tr>
 					</table>
 				</div>
+				<br>
+			</div>
+			<div th:if="${list.isEmpty()}" style="text-align: center;"
+				class="table col-ms-12">
+				<a style="float: inherit;" class="btn btn-primary"
+					href="/horas/save/horas/0"><span>Agregar horas</span></a>
 			</div>
 			<br>
-			<div class="table col-ms-12">
-				<a style="float: inherit;" class="btn btn-primary"
-					href="/horas/save/horas/0">Agregar horas</a>
-			</div>
 		</div>
-		<br></br>
 		<div style="width: 100%" class="col-ms-12"
 			th:if="${!personal.isEmpty()}">
-			<h2 th:if="${list.isEmpty()}">No hay horas imputadas</h2>
+			<h2 style="text-align: center;" th:if="${list.isEmpty()}">No hay
+				horas imputadas</h2>
+			<a th:if="${!list.isEmpty()}" style="float: right;"
+				class="btn btn-primary " href="/horas/save/horas/0"><span>Agregar
+					horas</span></a>
 			<div class="col-ms-12" th:if="${!list.isEmpty()}">
 				<h2>Horas</h2>
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
 							<tr>
-								<th>Año</th>
-								<th>Mes</th>
+								<th>Nº Dia</th>
 								<th>Dia</th>
+								<th>Mes</th>
+								<th>Año</th>
 								<th>Horas Trabajadas</th>
-								<th>Editar</th>
-								<th>Eliminar</th>
+								<th>Hora Del Registro</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="horas : ${list}">
-								<td th:text="${horas.anyo}">
+								<td th:text=${horas.numeroDia}>
+								<td th:text="${horas.dia}">
 								<td th:text="${horas.mes}">
-								<td th:text="${horas.dia} + ${horas.numeroDia}">
+								<td th:text="${horas.anyo}">
 								<td th:text="${horas.horasDia}">
-								<td><a class="btn btn-info"
-									th:href="@{/horas/save/horas/{id}(id=${horas.id})}">Editar</a></td>
-								<td><a class="btn btn-delete"
-									th:href="@{/horas/save/horas/{id}(id=${horas.id})}">Delete</a></td>
+								<td th:text="${horas.horaDelRegistroDeHoras}">
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
+	</div>
 </body>
 </html>
