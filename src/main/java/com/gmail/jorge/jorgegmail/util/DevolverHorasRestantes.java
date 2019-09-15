@@ -37,9 +37,18 @@ public class DevolverHorasRestantes {
 		return res;
 	}
 
-	public double calcularMediaHoras(String horasxDia) {
+	public double calcularMediaHoras(List<Horas> horas, String diasTotales) {
+		double horasTotales = 0;
+		double mediaHora = 0;
+		if (horas != null)
+			for (Horas horaass : horas) {
+				double aux = 0;
+				horasTotales += aux + Double.parseDouble(horaass.getHorasDia());
+			}
+		if (diasTotales != null)
+			mediaHora = horasTotales / Double.parseDouble(diasTotales);
 
-		return 0;
+		return mediaHora;
 	}
 
 	public double getHorasRestantes() {

@@ -27,7 +27,10 @@ import com.gmail.jorge.jorgegmail.util.HorasTotalesACalcular;
 @Configurable
 @RequestMapping("/horas")
 public class HorasController implements WebMvcConfigurer {
-
+	// dias trabajdo totales 273 dias / año
+	// + 365 días de correspondientes a un año natural
+	// – 30 días de vacaciones naturales
+	// – 62 días, correspondientes a 48 domingos y 14 festivos.
 	@Autowired
 	HorasService horasService;
 
@@ -41,29 +44,19 @@ public class HorasController implements WebMvcConfigurer {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(Model model) {
-
+		//busca lista
 		List<Horas> list = horasService.findAll();
 		model.addAttribute("list", list);
 		List<Persona> persona = personaService.findAll();
 		model.addAttribute("personal", persona);
-
-		String horasTotales = "";
-		for (Persona p : persona) {
-			horasTotales = p.getHorasTotalesRestantes().toString();
-		}
-		model.addAttribute("horasRestantesTotal", horasTotales);
+		model.addAttribute("horasRestantesTotal", persona.get(0).getHorasTotalesRestantes().toString());
 		return "horasTotales.html";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/save/horas/{id}")
 	public String showSave(@PathVariable("id") Long id, Model model) {
-		if (id != null && id != 0) {
-			// actualizar
-			model.addAttribute(horasService.findOne(id));
-		} else {
-			Horas b = new Horas();
-			model.addAttribute("horas", b);
-		}
+		Horas b = new Horas();
+		model.addAttribute("horas", b);
 		String parte1 = parte1();
 		String horasInp = null;
 		model.addAttribute("dia", parte1);
@@ -79,31 +72,21 @@ public class HorasController implements WebMvcConfigurer {
 		horas.setNumeroDia(partes[2]);
 		horas.setHoraDelRegistroDeHoras(partes[3]);
 		horas.setAnyo(partes[5]);
-		// reevisar horas
+		// TODO reevisar horas
 		List<Persona> persona = personaService.findAll();
-		
-		//horas.setHorasDia("8");
-		horas.setHorasSemana(persona.get(0).getHorasSemana());
-		horas.setHorasTotales(persona.get(0).getHorasTotales());
-
 		Persona per = persona.get(0);
-
 		int value = Integer.parseInt(per.getDiasTrabajados()) + 1;
 		per.setDiasTrabajados(String.valueOf(value));
+		per.getHoras().add(horas);
+		personaService.save(per);
+		persona = personaService.findAll();
 
 		DevolverHorasRestantes devoler = new DevolverHorasRestantes();
-
-		double mediaHora = devoler.calcularMediaHoras(horas.getHorasDia());
-		
-		per.getHoras().add(horas);
-		per.setMediaHoras(String.valueOf(mediaHora));
-
-		personaService.save(per);
-
-		persona = personaService.findAll();
 		double res = devoler.devolverHoras(persona.get(0), persona.get(0).getHoras());
-
 		per.setHorasTotalesRestantes(String.valueOf(res));
+
+		double mediaHora = devoler.calcularMediaHoras(persona.get(0).getHoras(), per.getDiasTrabajados());
+		per.setMediaHoras(String.valueOf(mediaHora));
 		per.setHorasDia(horas.getHorasDia());
 
 		personaService.save(per);

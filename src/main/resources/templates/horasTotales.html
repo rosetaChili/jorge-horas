@@ -58,41 +58,43 @@
 			</div>
 			<br>
 			<div class="table col-ms-12">
-				<a style="float: inherit;" class="btn btn-primary" href="/horas/save/horas/0">Agregar
-					horas</a>
+				<a style="float: inherit;" class="btn btn-primary"
+					href="/horas/save/horas/0">Agregar horas</a>
 			</div>
 		</div>
 		<br></br>
-		<div style="width: 100%" class="col-ms-12" th:if="${!personal.isEmpty()}">
+		<div style="width: 100%" class="col-ms-12"
+			th:if="${!personal.isEmpty()}">
 			<h2 th:if="${list.isEmpty()}">No hay horas imputadas</h2>
 			<div class="col-ms-12" th:if="${!list.isEmpty()}">
 				<h2>Horas</h2>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Año</th>
-							<th>Mes</th>
-							<th>Dia</th>
-							<th>Horas Trabajadas</th>
-							<th>Editar</th>
-							<th>Eliminar</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="horas : ${list}">
-							<td th:text="${horas.anyo}">
-							<td th:text="${horas.mes}">
-							<td th:text="${horas.dia} + ${horas.numeroDia}">
-							<td th:text="${horas.horasDia}">
-							<td><a class="btn btn-info"
-								th:href="@{/horas/save/horas/{id}(id=${horas.id})}">Editar</a></td>
-							<td><a class="btn btn-delete"
-								th:href="@{/horas/save/horas/{id}(id=${horas.id})}">Delete</a></td>
-						</tr>
-					</tbody>
-				</table>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Año</th>
+								<th>Mes</th>
+								<th>Dia</th>
+								<th>Horas Trabajadas</th>
+								<th>Editar</th>
+								<th>Eliminar</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="horas : ${list}">
+								<td th:text="${horas.anyo}">
+								<td th:text="${horas.mes}">
+								<td th:text="${horas.dia} + ${horas.numeroDia}">
+								<td th:text="${horas.horasDia}">
+								<td><a class="btn btn-info"
+									th:href="@{/horas/save/horas/{id}(id=${horas.id})}">Editar</a></td>
+								<td><a class="btn btn-delete"
+									th:href="@{/horas/save/horas/{id}(id=${horas.id})}">Delete</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

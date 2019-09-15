@@ -39,21 +39,8 @@ public class Horas implements Serializable {
 	@Column(name = "hora_del_registro_de_horas")
 	private String horaDelRegistroDeHoras;
 
-	// @NotNull
-	// @Size(min = 5, max = 30)
 	@Column(name = "horas_dia")
 	private String horasDia;
-
-	// @NotNull
-	@Column(name = "horas_semana")
-	private String horasSemana;
-
-	// @NotNull
-	@Column(name = "horas_totales")
-	private String horasTotales;
-	
-	@Column(name="horas_dias_trabajados")
-	private String diasTrabajados;
 
 	public String getNumeroDia() {
 		return numeroDia;
@@ -111,30 +98,6 @@ public class Horas implements Serializable {
 		this.horasDia = horasDia;
 	}
 
-	public String getHorasSemana() {
-		return horasSemana;
-	}
-
-	public void setHorasSemana(String horasSemana) {
-		this.horasSemana = horasSemana;
-	}
-
-	public String getHorasTotales() {
-		return horasTotales;
-	}
-
-	public void setHorasTotales(String horasTotales) {
-		this.horasTotales = horasTotales;
-	}
-	
-	public String getDiasTrabajados() {
-		return diasTrabajados;
-	}
-
-	public void setDiasTrabajados(String diasTrabajados) {
-		this.diasTrabajados = diasTrabajados;
-	}
-	
 	public Horas() {
 		super();
 	}
@@ -144,8 +107,8 @@ public class Horas implements Serializable {
 		this.horasDia = horasDia;
 	}
 
-	public Horas(String anyo, String dia, String numeroDia, String mes, String horaDelRegistroDeHoras, String horasDia,
-			String horasSemana, String horasTotales) {
+	public Horas(String anyo, String dia, String numeroDia, String mes, String horaDelRegistroDeHoras,
+			String horasDia) {
 		super();
 		this.anyo = anyo;
 		this.dia = dia;
@@ -153,32 +116,12 @@ public class Horas implements Serializable {
 		this.mes = mes;
 		this.horaDelRegistroDeHoras = horaDelRegistroDeHoras;
 		this.horasDia = horasDia;
-		this.horasSemana = horasSemana;
-		this.horasTotales = horasTotales;
 	}
 
-	public Horas(String anyo, String mes, String horasDia, String horasSemana, String horasTotales) {
+	public Horas(String anyo, String mes, String horasDia) {
 		super();
 		this.anyo = anyo;
 		this.mes = mes;
 		this.horasDia = horasDia;
-		this.horasSemana = horasSemana;
-		this.horasTotales = horasTotales;
 	}
-
-	public Horas(String anyo, String dia, String numeroDia, String mes, String horaDelRegistroDeHoras, String horasDia,
-			String horasSemana, String horasTotales, String diasTrabajados) {
-		super();
-		this.anyo = anyo;
-		this.dia = dia;
-		this.numeroDia = numeroDia;
-		this.mes = mes;
-		this.horaDelRegistroDeHoras = horaDelRegistroDeHoras;
-		this.horasDia = horasDia;
-		this.horasSemana = horasSemana;
-		this.horasTotales = horasTotales;
-		this.diasTrabajados = diasTrabajados;
-	}
-	
-
 }
