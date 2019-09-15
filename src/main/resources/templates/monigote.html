@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<title>Monos</title>
+
+<!-- Bootstrap CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<div></div>
+		<h2 th:if="${list.isEmpty()}">No hay perros por la zona</h2>
+		<!--${list.isEmpty()}  -->
+		<div class="row" th:if="${!list.isEmpty()}">
+			<!-- ${!list.isEmpty()} -->
+				<h2 class="col">Fekas</h2>
+				<a  style="float: right; margin-left:25%; margin-right: 5%;" href="/save/monigote/0"
+					class="btn btn-primary col">Agregar perros</a>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Apellido</th>
+						<th>Retraso</th>
+						<th>Editar</th>
+						<th>Eliminar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="persona : ${list}">
+						<td th:text="${persona.nombre}">
+						<td th:text="${persona.apellido}">
+						<td th:text="${persona.retrasoType}">
+						<td><a class="btn btn-info"
+							th:href="@{/save/monigote/{id}(id=${persona.id})}">Editar</a></td>
+						<td><a class="btn btn-danger"
+							th:href="@{/delete/mono/{id}(id=${persona.id})}">Eliminar</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

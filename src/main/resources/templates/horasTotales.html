@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<title>Horas Totales</title>
+<script src="../static/js/jquery.js"></script>
+<!-- Bootstrap CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+	<div class="container">
+		<div class="row" th:if="${personal.isEmpty()}">
+			<div class="col-sm-12">
+				<br></br>
+				<div style="text-align: center;">
+					<h2 style="text-align: center;">Permiteme saber quien eres</h2>
+				</div>
+				<br>
+				<div style="margin-left: 42%; margin-right: 25%;">
+					<a class="btn btn-primary" href="/persona/save/persona/0">Agregar
+						Identidad</a>
+				</div>
+			</div>
+		</div>
+		<div class="row" th:if="${!personal.isEmpty()}">
+			<div style="width: 100%">
+				<div>
+					<br></br>
+					<div style="text-align: center;">
+						<h2>BIENVENIDO</h2>
+					</div>
+					<br></br>
+					<table class="table col-ms-12 col">
+						<thead>
+							<tr>
+								<th scope="row">Nombre</th>
+								<th scope="row">Apellido</th>
+								<th scope="row">Apellido2</th>
+								<th scope="row">Horas/Semana</th>
+								<th scope="row">Media Horas/Dia</th>
+								<th scope="row">Horas Totales</th>
+								<th scope="row">Horas Restantes</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="persona : ${personal}">
+								<td scope="row" th:text="${persona.nombre}">
+								<td scope="row" th:text="${persona.apellido1}">
+								<td scope="row" th:text="${persona.apellido2}">
+								<td scope="row" th:text="${persona.horasSemana}">
+								<td scope="row" th:text="${persona.mediaHoras}">
+								<td scope="row" th:text="${persona.horasTotales}">
+								<td scope="row" th:text="${horasRestantesTotal}">
+							</tr>
+					</table>
+				</div>
+			</div>
+			<br>
+			<div class="table col-ms-12">
+				<a style="float: inherit;" class="btn btn-primary" href="/horas/save/horas/0">Agregar
+					horas</a>
+			</div>
+		</div>
+		<br></br>
+		<div style="width: 100%" class="col-ms-12" th:if="${!personal.isEmpty()}">
+			<h2 th:if="${list.isEmpty()}">No hay horas imputadas</h2>
+			<div class="col-ms-12" th:if="${!list.isEmpty()}">
+				<h2>Horas</h2>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Año</th>
+							<th>Mes</th>
+							<th>Dia</th>
+							<th>Horas Trabajadas</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="horas : ${list}">
+							<td th:text="${horas.anyo}">
+							<td th:text="${horas.mes}">
+							<td th:text="${horas.dia} + ${horas.numeroDia}">
+							<td th:text="${horas.horasDia}">
+							<td><a class="btn btn-info"
+								th:href="@{/horas/save/horas/{id}(id=${horas.id})}">Editar</a></td>
+							<td><a class="btn btn-delete"
+								th:href="@{/horas/save/horas/{id}(id=${horas.id})}">Delete</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

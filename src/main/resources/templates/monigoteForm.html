@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Guardar mono</title>
+
+<!-- Bootstrap CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<h2>Agregar Puto Maricon</h2>
+		<form action="#" th:action="@{/save/monigote}" th:object="${monigote}"
+			method="post">
+			<div class="form-group">
+				<label for="nombre">Nombre</label> <input type="text"
+					class="form-control" id="nombre" th:field="*{nombre}" name="nombre">
+			</div>
+			<input type="hidden" th:field="*{id}" name="id" id="id">
+			<div class="form-group">
+				<label for="apellido">Apellido</label> <input type="text"
+					class="form-control" id="apellido" th:field="*{apellido}"
+					name="apellido">
+			</div>
+			<div class="form-group">
+			<label for="retrasoType">TIPO DE RETRASO</label>
+				<select class="form-control" name="retrasoType" >
+					<option th:each="retrasoType : ${retrasoTypeList}"  th:field="*{retrasoType}" value=""
+						th:text="${retrasoType.getLabel()}"></option>
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-success">Guardar</button>
+		</form>
+	</div>
+</body>
+</html>
